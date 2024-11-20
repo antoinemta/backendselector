@@ -1,0 +1,17 @@
+{
+ "manifest_version": 2,
+ "name": "Backend selector",
+ "description": "To copy the inputs from backend",
+ "version": "1.0",
+ "browser_action": {
+   "default_popup": "popup.html"
+  },
+ "background": {
+     "service_worker": "index.js",
+     "type": "module"
+    },
+ "permissions": [
+  "activeTab",
+  "<all_urls>"
+ ]
+}
