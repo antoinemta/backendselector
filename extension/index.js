@@ -1,19 +1,36 @@
-document.getElementById("test").addEventListener('click', () => {
-    console.log("Popup DOM fully loaded and parsed");
+let getText = "";
+let initialisation = false;
 
-   
-    function modifyDOM() {
-        //You can play with your DOM here or check URL against your regex
-        alert('test');
+function modifyDOM() {
+        console.log(getText);
         return document.body.innerHTML;
     }
 
-    //We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
+function selectTab() {
     chrome.tabs.executeScript({
-        code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
+        code: 'getText = "'+getText+'"; (' + modifyDOM + ')();'
     }, (results) => {
-        //Here we have just the innerHTML and not DOM structure
-        console.log('Popup script:')
         console.log(results[0]);
     });
+}
+
+document.getElementById("test").addEventListener('click', () => {
+    navigator.clipboard.readText().then((content)=>{
+        getText = content;
+        if (initialisation){
+            selectTab();
+        }
+        
+    });
+
+    /*navigator.clipboard.writeText("test").then(()=>{
+
+    });*/
+   
 });
+
+chrome.tabs.executeScript({
+        code: 'let getText = "";'
+    }, () => {
+                initialisation = true;
+    });
