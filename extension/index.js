@@ -63,25 +63,28 @@ document.getElementById("test").addEventListener('click', () => {
                         }
                     });                    
                 } else {
-                    /*if (data.includes("BATIMENT") ||
+                    if (data.includes("APPARTEMENT") || 
+                        data.includes("APPT") ||
+                        data.includes("BATIMENT") ||
                         data.includes("RESIDENCE") ||
                         data.includes("ESCALIER") ||
-                        data.includes("APPARTEMENT") ||
-                        data.includes("APPT") ||
                         data.includes("ETAGE") ||
-                        data.includes("ETG")){
-                            datasFile.adress_complement = datasFile.adress_complement + data.replaceAll("\r","");
-                            if (datasFile.adress_complement[0]===" "){
-                                datasFile.adress_complement = datasFile.adress_complement.replace(" ","");
-                            }   
+                        data.includes("ETG")
+                    ){
+                        datasFile.adress_complement = data;
                         }
                         else {
-                        datasFile.adress = datasFile.adress + data.replaceAll("\r","");
-                        if (datasFile.adress[0]===" "){
-                            datasFile.adress = datasFile.adress.replace(" ","");
-                        }
-                    }*/
-                }  
+                        datasFile.adress = data;
+                    }
+                }
+                datasFile.adress_complement = datasFile.adress_complement.replace("\r","");
+                datasFile.adress = datasFile.adress.replace("\r","");
+                if (datasFile.adress_complement[0]==" "){
+                    datasFile.adress_complement = datasFile.adress_complement.replace(" ","");
+                }
+                if (datasFile.adress[0]==" "){
+                    datasFile.adress = datasFile.adress.replace(" ","");
+                }
                 console.log(datasFile);
             });
         }
