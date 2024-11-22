@@ -45,7 +45,7 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.toUpperCase();
             getText = getText.split("\n");
 
-            getText.map((data)=>{
+            getText.map((data, idLoop)=>{
                 if (data.includes("ANTOINE") && reg7.test(data)){
                     datasFile.firstname = "ANTOINE";
                 } else if (regCP.test(data)){
@@ -63,6 +63,13 @@ document.getElementById("test").addEventListener('click', () => {
                         }
                     });                    
                 } else {
+                    if (idLoop==getText.length-2){
+                        data.split('-').map((checkedData)=>{
+                            if (getText[idLoop+1].includes(checkedData)){
+                                return false;
+                            }
+                        });
+                    }
                     if (data.includes("APPARTEMENT") || 
                         data.includes("APPT") ||
                         data.includes("BATIMENT") ||
@@ -85,7 +92,7 @@ document.getElementById("test").addEventListener('click', () => {
                 if (datasFile.adress[0]==" "){
                     datasFile.adress = datasFile.adress.replace(" ","");
                 }
-                console.log(datasFile);
+                //console.log(datasFile);
             });
         }
         
