@@ -6,10 +6,12 @@ let reg3 = /[ןמ]/g;
 let reg4 = /[אגה]/g;
 let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
+let reg7 = /[^0-9]/;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
 let datasFile = {
     firstname : "",
     adress : "",
+    adress_complement : "",
     code_postal : null,
     name_city : ""
 };
@@ -44,7 +46,7 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.split("\n");
 
             getText.map((data)=>{
-                if (data.includes("ANTOINE")){
+                if (data.includes("ANTOINE") && reg7.test(data)){
                     datasFile.firstname = "ANTOINE";
                 } else if (regCP.test(data)){
                     data = data.split(" ");
@@ -61,13 +63,27 @@ document.getElementById("test").addEventListener('click', () => {
                         }
                     });                    
                 } else {
-                    datasFile.adress = datasFile.adress + data.replaceAll("\r","");
-                    if (datasFile.adress[0]===" "){
-                        datasFile.adress = datasFile.adress.replace(" ","");
-                    }
-                }             
+                    /*if (data.includes("BATIMENT") ||
+                        data.includes("RESIDENCE") ||
+                        data.includes("ESCALIER") ||
+                        data.includes("APPARTEMENT") ||
+                        data.includes("APPT") ||
+                        data.includes("ETAGE") ||
+                        data.includes("ETG")){
+                            datasFile.adress_complement = datasFile.adress_complement + data.replaceAll("\r","");
+                            if (datasFile.adress_complement[0]===" "){
+                                datasFile.adress_complement = datasFile.adress_complement.replace(" ","");
+                            }   
+                        }
+                        else {
+                        datasFile.adress = datasFile.adress + data.replaceAll("\r","");
+                        if (datasFile.adress[0]===" "){
+                            datasFile.adress = datasFile.adress.replace(" ","");
+                        }
+                    }*/
+                }  
+                console.log(datasFile);
             });
-            console.log(datasFile);
         }
         
     });
