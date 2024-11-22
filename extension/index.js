@@ -6,6 +6,13 @@ let reg3 = /[ןמ]/g;
 let reg4 = /[אגה]/g;
 let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
+let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
+let datasFile = {
+    firstname : "",
+    adress : "",
+    code_postal : null,
+    name_city : ""
+};
 
 
 
@@ -37,10 +44,30 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.split("\n");
 
             getText.map((data)=>{
-                if (reg1.test(data)){
-                    console.log('test');
-                }
+                if (data.includes("ANTOINE")){
+                    datasFile.firstname = "ANTOINE";
+                } else if (regCP.test(data)){
+                    data = data.split(" ");
+                    data.map((selectedData, id)=>{
+                        if (regCP.test(selectedData)){
+                            datasFile.code_postal = selectedData;
+                        }else{
+                            if (selectedData!=""){
+                                datasFile.name_city = datasFile.name_city + selectedData;
+                                if (id<data.length-1){
+                                    datasFile.name_city = datasFile.name_city + " ";
+                                }
+                            }
+                        }
+                    });                    
+                } else {
+                    datasFile.adress = datasFile.adress + data.replaceAll("\r","");
+                    if (datasFile.adress[0]===" "){
+                        datasFile.adress = datasFile.adress.replace(" ","");
+                    }
+                }             
             });
+            console.log(datasFile);
         }
         
     });
