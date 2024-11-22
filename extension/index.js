@@ -8,6 +8,7 @@ let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
 let reg7 = /[^0-9]/;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
+let checkedData = false;
 let datasFile = {
     firstname : "",
     adress : "",
@@ -36,6 +37,7 @@ document.getElementById("test").addEventListener('click', () => {
         getText = content;
         if (initialisation){
             //selectTab(); 
+            initialisation = false;
             getText = getText.toLowerCase();
             getText = getText.replaceAll(reg2,"e");
             getText = getText.replaceAll(reg3,"i");
@@ -46,6 +48,7 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.split("\n");
 
             getText.map((data, idLoop)=>{
+                checkedData = false;
                 if (data.includes("ANTOINE") && reg7.test(data)){
                     datasFile.firstname = "ANTOINE";
                 } else if (regCP.test(data)){
@@ -66,8 +69,11 @@ document.getElementById("test").addEventListener('click', () => {
                     if (idLoop==getText.length-2){
                         for (let i = 0; i < data.split('-').length; i++){
                             if (getText[idLoop+1].includes(data.split('-')[i])){                                
-                                return false;
+                                checkedData = true;
                             }
+                        }
+                        if (checkedData){
+                            return false;
                         }
                     }
                     if (data.includes("APPARTEMENT") || 
