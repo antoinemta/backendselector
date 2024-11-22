@@ -64,11 +64,11 @@ document.getElementById("test").addEventListener('click', () => {
                     });                    
                 } else {
                     if (idLoop==getText.length-2){
-                        data.split('-').map((checkedData)=>{
-                            if (getText[idLoop+1].includes(checkedData)){
+                        for (let i = 0; i < data.split('-').length; i++){
+                            if (getText[idLoop+1].includes(data.split('-')[i])){                                
                                 return false;
                             }
-                        });
+                        }
                     }
                     if (data.includes("APPARTEMENT") || 
                         data.includes("APPT") ||
