@@ -21,14 +21,14 @@ let datasFile = {
 
 
 function modifyDOM() {
-        console.log(getText);
+        console.log(getText.name_city);
         return document.body.innerHTML;
     }
 
 function selectTab() {
     console.log(datasFile);
     /*chrome.tabs.executeScript({
-        code: 'getText = "'+getText+'"; (' + modifyDOM + ')();'
+        code: 'getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
         console.log(results[0]);
     });*/
