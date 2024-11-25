@@ -1,6 +1,6 @@
 let getText = "";
 let initialisation = false;
-let reg1 = /[^a-zA-Z0-9]/g;
+let reg1 = /[^a-zA-Z0-9-]/g;
 let reg2 = /[йил]/g;
 let reg3 = /[по]/g;
 let reg4 = /[авд]/g;
@@ -45,6 +45,7 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.replaceAll(reg4,"a");
             getText = getText.replaceAll(reg5,"o");
             getText = getText.replaceAll(reg6,"u");
+            getText = getText.replaceAll(reg1," ");
             getText = getText.toUpperCase();
             getText = getText.split("\n");
 
