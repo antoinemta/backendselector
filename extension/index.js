@@ -1,6 +1,6 @@
 let getText = "";
 let initialisation = false;
-let reg1 = /[^a-zA-Z0-9-]/g;
+let reg1 = /[^a-zA-Z0-9]/g;
 let reg2 = /[йил]/g;
 let reg3 = /[по]/g;
 let reg4 = /[авд]/g;
@@ -21,17 +21,22 @@ let datasFile = {
 
 
 function modifyDOM() {
-        console.log(getText.name_city);
+        console.log(getText);
         return document.body.innerHTML;
     }
 
 function selectTab() {
-    console.log(datasFile);
-    /*chrome.tabs.executeScript({
-        code: 'getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
+    datasFile.firstname = datasFile.firstname.replaceAll(reg1," ");
+    datasFile.adress = datasFile.adress.replaceAll(reg1," ");
+    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
+    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
+    datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
+
+    chrome.tabs.executeScript({
+        code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
         console.log(results[0]);
-    });*/
+    });
 }
 
 document.getElementById("test").addEventListener('click', () => {
@@ -45,7 +50,6 @@ document.getElementById("test").addEventListener('click', () => {
             getText = getText.replaceAll(reg4,"a");
             getText = getText.replaceAll(reg5,"o");
             getText = getText.replaceAll(reg6,"u");
-            getText = getText.replaceAll(reg1," ");
             getText = getText.toUpperCase();
             getText = getText.split("\n");
 
