@@ -22,6 +22,7 @@ let datasFile = {
 
 function modifyDOM() {
         console.log(getText);
+        document.getElementsByName("request[custom_fields][7060121879197]")[0].value = "test";
         return document.body.innerHTML;
     }
 
