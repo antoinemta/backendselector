@@ -12,6 +12,7 @@ let checkedData = false;
 let datasFile = {
     firstname : "",
     adress : "",
+    adress_heberg : "",
     adress_complement : "",
     code_postal : null,
     name_city : ""
@@ -65,6 +66,16 @@ document.getElementById("test").addEventListener('click', () => {
                             }
                         }
                     });                    
+                } else if (data.includes("CHEZ ") && reg7.test(data)) {
+                    datasFile.adress_heberg = data.replace("\r","");
+                    if (datasFile.adress_heberg[0]==" "){
+                        datasFile.adress_heberg = datasFile.adress_heberg.replace(" ","");
+                    }
+                } else if (data.includes("CZ ") && reg7.test(data)) {
+                    datasFile.adress_heberg = data.replace("\r","");
+                    if (datasFile.adress_heberg[0]==" "){
+                        datasFile.adress_heberg = datasFile.adress_heberg.replace(" ","");
+                    }
                 } else {
                     if (idLoop==getText.length-2){
                         for (let i = 0; i < data.split('-').length; i++){
