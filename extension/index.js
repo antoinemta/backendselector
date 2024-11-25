@@ -26,18 +26,18 @@ function modifyDOM() {
     }
 
 function selectTab() {
-    chrome.tabs.executeScript({
+    console.log(datasFile);
+    /*chrome.tabs.executeScript({
         code: 'getText = "'+getText+'"; (' + modifyDOM + ')();'
     }, (results) => {
         console.log(results[0]);
-    });
+    });*/
 }
 
 document.getElementById("test").addEventListener('click', () => {
     navigator.clipboard.readText().then((content)=>{
         getText = content;
         if (initialisation){
-            //selectTab(); 
             initialisation = false;
             getText = getText.toLowerCase();
             getText = getText.replaceAll(reg2,"e");
@@ -111,8 +111,8 @@ document.getElementById("test").addEventListener('click', () => {
                 if (datasFile.adress[0]==" "){
                     datasFile.adress = datasFile.adress.replace(" ","");
                 }
-                //console.log(datasFile);
             });
+            selectTab(); 
         }
         
     });
@@ -124,7 +124,7 @@ document.getElementById("test").addEventListener('click', () => {
 });
 
 chrome.tabs.executeScript({
-        code: 'let getText = "";'
+        code: 'let getText = {};'
     }, () => {
                 initialisation = true;
     });
