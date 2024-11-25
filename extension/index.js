@@ -82,7 +82,9 @@ document.getElementById("test").addEventListener('click', () => {
                         data.includes("RESIDENCE") ||
                         data.includes("ESCALIER") ||
                         data.includes("ETAGE") ||
-                        data.includes("ETG")
+                        data.includes("ETG") ||
+                        data.includes("LOGEMENT") ||
+                        data.includes("LOGT")
                     ){
                         datasFile.adress_complement = data;
                         }
