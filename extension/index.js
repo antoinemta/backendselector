@@ -7,7 +7,7 @@ let reg4 = /[אגה]/g;
 let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
 let reg7 = /[^0-9]/;
-let reg8 = /  +/;
+let reg8 = /  +/g;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
 let checkedData = false;
 let datasFile = {
@@ -23,7 +23,21 @@ let datasFile = {
 
 function modifyDOM() {
         console.log(getText);
-        document.getElementsByName("request[custom_fields][7060121879197]")[0].value = "test";
+        if (getText.adress_heberg!=""){
+            getText.adress_heberg = getText.adress_heberg + " ";
+        }
+        if (getText.adress_complement!=""){
+            getText.adress_complement = getText.adress_complement + " ";
+        }
+        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
+        document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
+        document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
+        document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
+        document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+        document.getElementsByName("data[ville]")[0].value = getText.name_city;
+        document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
+        document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
+        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
         return document.body.innerHTML;
     }
 
