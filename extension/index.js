@@ -7,6 +7,7 @@ let reg4 = /[אגה]/g;
 let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
 let reg7 = /[^0-9]/;
+let reg8 = /  +/;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
 let checkedData = false;
 let datasFile = {
@@ -32,6 +33,12 @@ function selectTab() {
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
+    datasFile.firstname = datasFile.firstname.replaceAll(reg8," ");
+    datasFile.adress = datasFile.adress.replaceAll(reg8," ");
+    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
+    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
+    datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
+
 
     chrome.tabs.executeScript({
         code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
