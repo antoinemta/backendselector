@@ -19,10 +19,19 @@ let datasFile = {
     name_city : ""
 };
 
-
+function getDom(){
+        let currentName = [];
+        let loopName = null;
+        currentName = document.getElementsByTagName("a");
+        for (let a = 0; a<currentName.length; a++){
+            if (currentName[a].href.includes("/personne") && !currentName[a].href.includes("/document")){
+                loopName = a;
+            }
+        }
+        return currentName[loopName].textContent;
+    }
 
 function modifyDOM() {
-        console.log(getText);
         if (getText.adress_heberg!=""){
             getText.adress_heberg = getText.adress_heberg + " ";
         }
@@ -38,7 +47,7 @@ function modifyDOM() {
         document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
         document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
         document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
-        return document.body.innerHTML;
+        return true;
     }
 
 function selectTab() {
@@ -57,7 +66,6 @@ function selectTab() {
     chrome.tabs.executeScript({
         code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
-        console.log(results[0]);
         initialisation = true;
     });
 }
@@ -152,7 +160,8 @@ document.getElementById("clickBS").addEventListener('click', () => {
 });
 
 chrome.tabs.executeScript({
-        code: 'let getText = {};'
-    }, () => {
+        code: 'let getText = {}; (' + getDom + ')();'
+    }, (getName) => {
                 initialisation = true;
+                console.log(getName[0]);
     });
