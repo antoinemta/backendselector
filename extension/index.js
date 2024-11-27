@@ -9,6 +9,7 @@ let reg6 = /[üûù]/g;
 let reg7 = /[^0-9]/;
 let reg8 = /  +/g;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
+let regMin = /[a-z]/;
 let checkedData = false;
 let datasFile = {
     firstname : "",
@@ -86,8 +87,8 @@ document.getElementById("clickBS").addEventListener('click', () => {
 
             getText.map((data, idLoop)=>{
                 checkedData = false;
-                if (data.includes("ANTOINE") && reg7.test(data)){
-                    datasFile.firstname = "ANTOINE";
+                if (data.includes(datasFile.firstname) && reg7.test(data)){
+                    datasFile.firstname = datasFile.firstname;
                 } else if (regCP.test(data)){
                     data = data.split(" ");
                     data.map((selectedData, id)=>{
@@ -162,6 +163,27 @@ document.getElementById("clickBS").addEventListener('click', () => {
 chrome.tabs.executeScript({
         code: 'let getText = {}; (' + getDom + ')();'
     }, (getName) => {
+                let names = "";
+                let names2 = [];
+                names=getName[0];
+                names = names.split(" ");
+                names.map((actualName)=>{
+                    if (actualName != "" && actualName != " " && !actualName.includes("ocataire")){
+                        names2.push(actualName);
+                    }
+                });
+                names2.map((actualName2)=>{
+                    if (regMin.test(actualName2)){
+                        datasFile.firstname = actualName2;
+                    }
+                });
+                datasFile.firstname = datasFile.firstname.toLowerCase();
+                datasFile.firstname = datasFile.firstname.replaceAll(reg2,"e");
+                datasFile.firstname = datasFile.firstname.replaceAll(reg3,"i");
+                datasFile.firstname = datasFile.firstname.replaceAll(reg4,"a");
+                datasFile.firstname = datasFile.firstname.replaceAll(reg5,"o");
+                datasFile.firstname = datasFile.firstname.replaceAll(reg6,"u");
+                datasFile.firstname = datasFile.firstname.toUpperCase();
+                console.log(datasFile);
                 initialisation = true;
-                console.log(getName[0]);
     });
