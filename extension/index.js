@@ -28,14 +28,39 @@ function gettingContent(typeFile){
         getText = content;
         if (initialisation){
             initialisation = false;
-            getText = getText.toLowerCase();
+            if (typeFile!="ATH"){
+                getText = getText.toLowerCase();
+            }
             getText = getText.replaceAll(reg2,"e");
             getText = getText.replaceAll(reg3,"i");
             getText = getText.replaceAll(reg4,"a");
             getText = getText.replaceAll(reg5,"o");
             getText = getText.replaceAll(reg6,"u");
-            getText = getText.toUpperCase();
+            if (typeFile!="ATH"){
+                getText = getText.toUpperCase();
+            }
             getText = getText.split("\n");
+
+            if (typeFile=="ATH"){
+                getText.map((data, idLoop)=>{
+                    if (data.includes("soussigne")){
+                        datasFile.firstname = data.split("soussigne")[1];
+                        datasFile.firstname = datasFile.firstname.split(" ne")[0];
+                        datasFile.firstname = datasFile.firstname.split(" ");
+                        datasFile.firstname.map((nameActual)=>{
+                            if (regMin.test(nameActual)){
+                                datasFile.lastname = nameActual;
+                            } else {
+                                datasFile.adress = nameActual;
+                            }
+                        });
+                        datasFile.firstname = datasFile.lastname;
+                        datasFile.lastname = datasFile.adress;
+                        datasFile.adress = "";
+                    }
+                });
+                return true;
+            }
 
             getText.map((data, idLoop)=>{
                 checkedData = false;
