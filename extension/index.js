@@ -1,4 +1,5 @@
 let getText = "";
+let typeFileDOM = "";
 let initialisation = false;
 let reg1 = /[^a-zA-Z0-9]/g;
 let reg2 = /[éèë]/g;
@@ -138,12 +139,6 @@ function getDom(){
     }
 
 function modifyDOM() {
-        if (getText.adress_heberg!=""){
-            getText.adress_heberg = getText.adress_heberg + " ";
-        }
-        if (getText.adress_complement!=""){
-            getText.adress_complement = getText.adress_complement + " ";
-        }
         document.getElementsByName("data[nom1]")[0].value = getText.firstname;
         document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
         document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
@@ -173,7 +168,7 @@ function selectTab(typeFile) {
     alert(typeFile);
     initialisation = true;
     /*chrome.tabs.executeScript({
-        code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
+        code: 'typeFileDOM = "'+typeFile+'"getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
         initialisation = true;
     });*/
@@ -194,7 +189,7 @@ document.getElementById("clickBS").addEventListener('click', () => {
 });
 
 chrome.tabs.executeScript({
-        code: 'let getText = {}; (' + getDom + ')();'
+        code: 'let typeFileDOM = ""; let getText = {}; (' + getDom + ')();'
     }, (getName) => {
                 let names = "";
                 let names2 = [];
