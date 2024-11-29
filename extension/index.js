@@ -8,6 +8,7 @@ let reg5 = /[פצ]/g;
 let reg6 = /[üûש]/g;
 let reg7 = /[^0-9]/;
 let reg8 = /  +/g;
+let reg9 = / $/;
 let regCP = /[0-9][0-9][0-9][0-9][0-9]/;
 let regMin = /[a-z]/;
 let checkedData = false;
@@ -105,6 +106,9 @@ document.getElementById("clickBS").addEventListener('click', () => {
                     datasFile.lastname = datasFile.lastname.replace("ou ","");
                     if (datasFile.lastname[0]==" "){
                         datasFile.lastname = datasFile.lastname.replace(" ","");
+                    }
+                    if (datasFile.lastname[datasFile.lastname.length-1]==" "){
+                        datasFile.lastname = datasFile.lastname.replace(reg9,"");
                     }
                     datasFile.lastname = datasFile.lastname.toUpperCase();
                 } else if (regCP.test(data)){
