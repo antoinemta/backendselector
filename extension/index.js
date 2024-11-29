@@ -23,7 +23,6 @@ let datasFile = {
 };
 
 function gettingContent(typeFile){
-    alert(typeFile);
     navigator.clipboard.readText().then((content)=>{
         getText = content;
         if (initialisation){
@@ -119,14 +118,14 @@ function gettingContent(typeFile){
                     datasFile.adress = datasFile.adress.replace(" ","");
                 }
             });
-            selectTab(); 
+            selectTab(typeFile); 
         }
         
     });
 }
 
 function getDom(){
-        let currentName = [];
+        /*let currentName = [];
         let loopName = null;
         currentName = document.getElementsByTagName("a");
         for (let a = 0; a<currentName.length; a++){
@@ -134,7 +133,8 @@ function getDom(){
                 loopName = a;
             }
         }
-        return currentName[loopName].textContent;
+        return currentName[loopName].textContent;*/
+        return "Antoine";
     }
 
 function modifyDOM() {
@@ -156,7 +156,7 @@ function modifyDOM() {
         return true;
     }
 
-function selectTab() {
+function selectTab(typeFile) {
     datasFile.firstname = datasFile.firstname.replaceAll(reg1," ");
     datasFile.lastname = datasFile.lastname.replaceAll(reg1," ");
     datasFile.adress = datasFile.adress.replaceAll(reg1," ");
@@ -170,12 +170,13 @@ function selectTab() {
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
 
-
-    chrome.tabs.executeScript({
+    alert(typeFile);
+    initialisation = true;
+    /*chrome.tabs.executeScript({
         code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
         initialisation = true;
-    });
+    });*/
 }
 
 document.getElementById("clickAI").addEventListener('click', () => {
@@ -188,23 +189,28 @@ document.getElementById("clickAI").addEventListener('click', () => {
    
 });
 
+document.getElementById("clickBS").addEventListener('click', () => {
+    gettingContent("BS");       
+});
+
 chrome.tabs.executeScript({
         code: 'let getText = {}; (' + getDom + ')();'
     }, (getName) => {
                 let names = "";
                 let names2 = [];
-                names=getName[0];
+                /*names=getName[0];
                 names = names.split(" ");
                 names.map((actualName)=>{
                     if (actualName != "" && actualName != " " && !actualName.includes("ocataire")){
                         names2.push(actualName);
                     }
-                });
+                });*/
                 names2.map((actualName2)=>{
                     if (regMin.test(actualName2)){
                         datasFile.firstname = actualName2;
                     }
                 });
+                datasFile.firstname = "Antoine";
                 datasFile.firstname = datasFile.firstname.toLowerCase();
                 datasFile.firstname = datasFile.firstname.replaceAll(reg2,"e");
                 datasFile.firstname = datasFile.firstname.replaceAll(reg3,"i");
@@ -212,6 +218,5 @@ chrome.tabs.executeScript({
                 datasFile.firstname = datasFile.firstname.replaceAll(reg5,"o");
                 datasFile.firstname = datasFile.firstname.replaceAll(reg6,"u");
                 datasFile.firstname = datasFile.firstname.toUpperCase();
-                console.log(datasFile);
                 initialisation = true;
     });
