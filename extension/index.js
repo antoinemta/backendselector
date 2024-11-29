@@ -24,64 +24,6 @@ let datasFile = {
 
 function gettingContent(typeFile){
     alert(typeFile);
-}
-
-function getDom(){
-        let currentName = [];
-        let loopName = null;
-        currentName = document.getElementsByTagName("a");
-        for (let a = 0; a<currentName.length; a++){
-            if (currentName[a].href.includes("/personne") && !currentName[a].href.includes("/document")){
-                loopName = a;
-            }
-        }
-        return currentName[loopName].textContent;
-    }
-
-function modifyDOM() {
-        if (getText.adress_heberg!=""){
-            getText.adress_heberg = getText.adress_heberg + " ";
-        }
-        if (getText.adress_complement!=""){
-            getText.adress_complement = getText.adress_complement + " ";
-        }
-        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
-        document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
-        document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
-        document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
-        document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
-        document.getElementsByName("data[ville]")[0].value = getText.name_city;
-        document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
-        document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
-        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
-        return true;
-    }
-
-function selectTab() {
-    datasFile.firstname = datasFile.firstname.replaceAll(reg1," ");
-    datasFile.lastname = datasFile.lastname.replaceAll(reg1," ");
-    datasFile.adress = datasFile.adress.replaceAll(reg1," ");
-    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
-    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
-    datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
-    datasFile.firstname = datasFile.firstname.replaceAll(reg8," ");
-    datasFile.lastname = datasFile.lastname.replaceAll(reg8," ");
-    datasFile.adress = datasFile.adress.replaceAll(reg8," ");
-    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
-    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
-    datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
-
-
-    chrome.tabs.executeScript({
-        code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
-    }, (results) => {
-        initialisation = true;
-    });
-}
-
-document.getElementById("clickAI").addEventListener('click', () => {
-    gettingContent("AI");
-    return false;
     navigator.clipboard.readText().then((content)=>{
         getText = content;
         if (initialisation){
@@ -181,6 +123,64 @@ document.getElementById("clickAI").addEventListener('click', () => {
         }
         
     });
+}
+
+function getDom(){
+        let currentName = [];
+        let loopName = null;
+        currentName = document.getElementsByTagName("a");
+        for (let a = 0; a<currentName.length; a++){
+            if (currentName[a].href.includes("/personne") && !currentName[a].href.includes("/document")){
+                loopName = a;
+            }
+        }
+        return currentName[loopName].textContent;
+    }
+
+function modifyDOM() {
+        if (getText.adress_heberg!=""){
+            getText.adress_heberg = getText.adress_heberg + " ";
+        }
+        if (getText.adress_complement!=""){
+            getText.adress_complement = getText.adress_complement + " ";
+        }
+        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
+        document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
+        document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
+        document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
+        document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+        document.getElementsByName("data[ville]")[0].value = getText.name_city;
+        document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
+        document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
+        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+        return true;
+    }
+
+function selectTab() {
+    datasFile.firstname = datasFile.firstname.replaceAll(reg1," ");
+    datasFile.lastname = datasFile.lastname.replaceAll(reg1," ");
+    datasFile.adress = datasFile.adress.replaceAll(reg1," ");
+    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
+    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
+    datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
+    datasFile.firstname = datasFile.firstname.replaceAll(reg8," ");
+    datasFile.lastname = datasFile.lastname.replaceAll(reg8," ");
+    datasFile.adress = datasFile.adress.replaceAll(reg8," ");
+    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
+    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
+    datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
+
+
+    chrome.tabs.executeScript({
+        code: 'getText.firstname = "'+datasFile.firstname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
+    }, (results) => {
+        initialisation = true;
+    });
+}
+
+document.getElementById("clickAI").addEventListener('click', () => {
+    gettingContent("AI");
+    
 
     /*navigator.clipboard.writeText("test").then(()=>{
 
