@@ -59,7 +59,7 @@ function gettingContent(typeFile){
                         datasFile.firstname = datasFile.lastname;
                         datasFile.lastname = datasFile.adress;
                         datasFile.adress = "";
-                    } else if (data.includes(" ne") && data.includes(" a ")){
+                    } else if (data.includes(" ne") && data.includes(" a ") && data.includes(" le ")){
                         datasFile.firstname_heberg = data.split(" ne")[0];
                         datasFile.firstname_heberg = datasFile.firstname_heberg.split(" ");
                         datasFile.firstname_heberg.map((nameActual)=>{
@@ -72,6 +72,27 @@ function gettingContent(typeFile){
                         datasFile.firstname_heberg = datasFile.lastname_heberg;
                         datasFile.lastname_heberg = datasFile.adress;
                         datasFile.adress = "";
+                    } else if (data.includes("depuis") && data.includes("adresse")){
+                        datasFile.adress = getText[idLoop+1];
+                        
+                    } else if (datasFile.adress.includes(data)){
+                        datasFile.adress = data;
+                    } else if (regCP.test(data)){
+                        data = data.split(" ");
+                        data.map((selectedData, id)=>{
+                            if (regCP.test(selectedData)){
+                                datasFile.code_postal = selectedData;
+                            }else{
+                                if (selectedData!=""){
+                                    datasFile.name_city = datasFile.name_city + selectedData;
+                                    if (id<data.length-1){
+                                        datasFile.name_city = datasFile.name_city + " ";
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        datasFile.adress = datasFile.adress + " " + data;
                     }
                 });
                 console.log(datasFile);
