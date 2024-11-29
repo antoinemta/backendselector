@@ -42,11 +42,6 @@ function gettingContent(typeFile){
                 if (data.includes(datasFile.firstname) && reg7.test(data)){
                     datasFile.lastname = data.split(datasFile.firstname)[0];
                     datasFile.lastname = datasFile.lastname.toLowerCase();
-                    datasFile.lastname = datasFile.lastname.replaceAll(reg2,"e");
-                    datasFile.lastname = datasFile.lastname.replaceAll(reg3,"i");
-                    datasFile.lastname = datasFile.lastname.replaceAll(reg4,"a");
-                    datasFile.lastname = datasFile.lastname.replaceAll(reg5,"o");
-                    datasFile.lastname = datasFile.lastname.replaceAll(reg6,"u");
                     datasFile.lastname = datasFile.lastname.replace("mle ","");
                     datasFile.lastname = datasFile.lastname.replace("mlle ","");
                     datasFile.lastname = datasFile.lastname.replace("mme ","");
