@@ -16,6 +16,8 @@ let checkedData = false;
 let datasFile = {
     firstname : "",
     lastname : "",
+    firstname_heberg : "",
+    lastname_heberg : "",
     adress : "",
     adress_heberg : "",
     adress_complement : "",
@@ -57,8 +59,22 @@ function gettingContent(typeFile){
                         datasFile.firstname = datasFile.lastname;
                         datasFile.lastname = datasFile.adress;
                         datasFile.adress = "";
+                    } else if (data.includes(" ne") && data.includes(" a ")){
+                        datasFile.firstname_heberg = data.split(" ne")[0];
+                        datasFile.firstname_heberg = datasFile.firstname_heberg.split(" ");
+                        datasFile.firstname_heberg.map((nameActual)=>{
+                            if (regMin.test(nameActual)){
+                                datasFile.lastname_heberg = nameActual;
+                            } else {
+                                datasFile.adress = nameActual;
+                            }
+                        });
+                        datasFile.firstname_heberg = datasFile.lastname_heberg;
+                        datasFile.lastname_heberg = datasFile.adress;
+                        datasFile.adress = "";
                     }
                 });
+                console.log(datasFile);
                 return true;
             }
 
