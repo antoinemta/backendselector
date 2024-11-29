@@ -188,6 +188,14 @@ document.getElementById("clickBS").addEventListener('click', () => {
     gettingContent("BS");       
 });
 
+document.getElementById("clickATH").addEventListener('click', () => {
+    gettingContent("ATH");       
+});
+
+document.getElementById("copy").addEventListener('click', () => {
+    alert('copy');       
+});
+
 chrome.tabs.executeScript({
         code: 'let typeFileDOM = ""; let getText = {}; (' + getDom + ')();'
     }, (getName) => {
