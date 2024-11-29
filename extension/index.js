@@ -13,6 +13,7 @@ let regMin = /[a-z]/;
 let checkedData = false;
 let datasFile = {
     firstname : "",
+    lastname : "",
     adress : "",
     adress_heberg : "",
     adress_complement : "",
@@ -53,11 +54,13 @@ function modifyDOM() {
 
 function selectTab() {
     datasFile.firstname = datasFile.firstname.replaceAll(reg1," ");
+    datasFile.lastname = datasFile.lastname.replaceAll(reg1," ");
     datasFile.adress = datasFile.adress.replaceAll(reg1," ");
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
     datasFile.firstname = datasFile.firstname.replaceAll(reg8," ");
+    datasFile.lastname = datasFile.lastname.replaceAll(reg8," ");
     datasFile.adress = datasFile.adress.replaceAll(reg8," ");
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
@@ -88,7 +91,22 @@ document.getElementById("clickBS").addEventListener('click', () => {
             getText.map((data, idLoop)=>{
                 checkedData = false;
                 if (data.includes(datasFile.firstname) && reg7.test(data)){
-                    datasFile.firstname = datasFile.firstname;
+                    datasFile.lastname = data.split(datasFile.firstname)[0];
+                    datasFile.lastname = datasFile.lastname.toLowerCase();
+                    datasFile.lastname = datasFile.lastname.replaceAll(reg2,"e");
+                    datasFile.lastname = datasFile.lastname.replaceAll(reg3,"i");
+                    datasFile.lastname = datasFile.lastname.replaceAll(reg4,"a");
+                    datasFile.lastname = datasFile.lastname.replaceAll(reg5,"o");
+                    datasFile.lastname = datasFile.lastname.replaceAll(reg6,"u");
+                    datasFile.lastname = datasFile.lastname.replace("mle ","");
+                    datasFile.lastname = datasFile.lastname.replace("mlle ","");
+                    datasFile.lastname = datasFile.lastname.replace("mme ","");
+                    datasFile.lastname = datasFile.lastname.replace("mr ","");
+                    datasFile.lastname = datasFile.lastname.replace("ou ","");
+                    if (datasFile.lastname[0]==" "){
+                        datasFile.lastname = datasFile.lastname.replace(" ","");
+                    }
+                    datasFile.lastname = datasFile.lastname.toUpperCase();
                 } else if (regCP.test(data)){
                     data = data.split(" ");
                     data.map((selectedData, id)=>{
