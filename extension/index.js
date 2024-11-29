@@ -22,6 +22,10 @@ let datasFile = {
     name_city : ""
 };
 
+function gettingContent(typeFile){
+    alert(typeFile);
+}
+
 function getDom(){
         let currentName = [];
         let loopName = null;
@@ -75,7 +79,9 @@ function selectTab() {
     });
 }
 
-document.getElementById("clickBS").addEventListener('click', () => {
+document.getElementById("clickAI").addEventListener('click', () => {
+    gettingContent("AI");
+    return false;
     navigator.clipboard.readText().then((content)=>{
         getText = content;
         if (initialisation){
