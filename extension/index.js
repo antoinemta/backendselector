@@ -193,7 +193,7 @@ function gettingContent(typeFile){
 }
 
 function getDom(){
-        /*let currentName = [];
+        let currentName = [];
         let loopName = null;
         currentName = document.getElementsByTagName("a");
         for (let a = 0; a<currentName.length; a++){
@@ -201,12 +201,13 @@ function getDom(){
                 loopName = a;
             }
         }
-        return currentName[loopName].textContent;*/
-        return "Antoine";
+        return currentName[loopName].textContent;
     }
 
 function modifyDOM() {
-        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
+        console.log(getText);
+        console.log(typeFileDOM);
+        /*document.getElementsByName("data[nom1]")[0].value = getText.firstname;
         document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
         document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
         document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
@@ -214,7 +215,7 @@ function modifyDOM() {
         document.getElementsByName("data[ville]")[0].value = getText.name_city;
         document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
         document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
-        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;*/
         return true;
     }
 
@@ -235,13 +236,11 @@ function selectTab(typeFile) {
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
-    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg9,"");
-    datasFile.adress = datasFile.adress.replaceAll(reg9,"");
-    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg9,"");
+    datasFile.adress_heberg = datasFile.adress_heberg.replace(reg9,"");
+    datasFile.adress = datasFile.adress.replace(reg9,"");
+    datasFile.adress_complement = datasFile.adress_complement.replace(reg9,"");
 
-    alert(typeFile);
-    console.log(datasFile);
-    initialisation = true;
+
     chrome.tabs.executeScript({
         code: 'typeFileDOM = "'+typeFile+'"; getText.lastname_heberg = "'+datasFile.lastname_heberg+'"; getText.firstname_heberg = "'+datasFile.firstname_heberg+'"; getText.firstname = "'+datasFile.firstname+'"; getText.lastname = "'+datasFile.lastname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
@@ -276,19 +275,18 @@ chrome.tabs.executeScript({
     }, (getName) => {
                 let names = "";
                 let names2 = [];
-                /*names=getName[0];
+                names=getName[0];
                 names = names.split(" ");
                 names.map((actualName)=>{
                     if (actualName != "" && actualName != " " && !actualName.includes("ocataire")){
                         names2.push(actualName);
                     }
-                });*/
+                });
                 names2.map((actualName2)=>{
                     if (regMin.test(actualName2)){
                         datasFile.firstname = actualName2;
                     }
                 });
-                datasFile.firstname = "Antoine";
                 datasFile.firstname = datasFile.firstname.toLowerCase();
                 datasFile.firstname = datasFile.firstname.replaceAll(reg2,"e");
                 datasFile.firstname = datasFile.firstname.replaceAll(reg3,"i");
