@@ -186,7 +186,8 @@ function gettingContent(typeFile){
                     datasFile.adress = datasFile.adress.replace(" ","");
                 }
             });
-            selectTab(typeFile); 
+            console.log(typeFile);
+            selectTab(typeFile);
         }
         
     });
@@ -205,8 +206,7 @@ function getDom(){
     }
 
 function modifyDOM() {
-        console.log(getText);
-        console.log(typeFileDOM);
+        alert(typeFileDOM);
         /*document.getElementsByName("data[nom1]")[0].value = getText.firstname;
         document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
         document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
@@ -240,7 +240,7 @@ function selectTab(typeFile) {
     datasFile.adress = datasFile.adress.replace(reg9,"");
     datasFile.adress_complement = datasFile.adress_complement.replace(reg9,"");
 
-
+    alert(typeFile);
     chrome.tabs.executeScript({
         code: 'typeFileDOM = "'+typeFile+'"; getText.lastname_heberg = "'+datasFile.lastname_heberg+'"; getText.firstname_heberg = "'+datasFile.firstname_heberg+'"; getText.firstname = "'+datasFile.firstname+'"; getText.lastname = "'+datasFile.lastname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
