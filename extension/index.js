@@ -161,10 +161,11 @@ function gettingContent(typeFile){
                             return false;
                         }
                     }
-                    if (data.includes("APPARTEMENT") || 
+                    if (data.includes("APPART") || 
                         data.includes("APPT") ||
                         data.includes("BATIMENT") ||
                         data.includes("RESIDENCE") ||
+                        data.includes("PORTE") ||
                         data.includes("ESCALIER") ||
                         data.includes("ETAGE") ||
                         data.includes("ETG") ||
@@ -198,7 +199,9 @@ function getDom(){
         currentName = document.getElementsByTagName("a");
         for (let a = 0; a<currentName.length; a++){
             if (currentName[a].href.includes("/personne") && !currentName[a].href.includes("/document")){
-                loopName = a;
+                if (!loopName){
+                    loopName = a;
+                }
             }
         }
         return currentName[loopName].textContent;
@@ -210,6 +213,7 @@ function modifyDOM() {
             document.getElementsByName("data[nom1]")[0].value = getText.lastname;
             document.getElementsByName("data[nom_usage1]")[0].value = getText.lastname;
             document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
+            //espaceeeeeeee
             document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
             document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
             document.getElementsByName("data[ville]")[0].value = getText.name_city;
@@ -253,6 +257,7 @@ function selectTab(typeFile) {
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
+    datasFile.name_city = datasFile.name_city.replace(reg9,"");
     datasFile.adress_heberg = datasFile.adress_heberg.replace(reg9,"");
     datasFile.adress = datasFile.adress.replace(reg9,"");
     datasFile.adress_complement = datasFile.adress_complement.replace(reg9,"");
