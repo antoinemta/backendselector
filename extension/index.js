@@ -208,15 +208,15 @@ function modifyDOM() {
         alert(typeFileDOM);
         console.log(getText);
         if (typeFileDOM=="AI"){
-        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
-        document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
-        document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
-        document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
-        document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
-        document.getElementsByName("data[ville]")[0].value = getText.name_city;
-        document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
-        document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
-        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+            document.getElementsByName("data[nom1]")[0].value = getText.lastname;
+            document.getElementsByName("data[nom_usage1]")[0].value = getText.lastname;
+            document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
+            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
+            document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+            document.getElementsByName("data[ville]")[0].value = getText.name_city;
+            document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
+            document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
+            document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
         } else if (typeFileDOM=="ATH"){
             document.getElementsByName("data[nom_heberge]")[0].value = getText.lastname_heberg;
             document.getElementsByName("data[prenom_heberge]")[0].value = getText.firstname_heberg;
@@ -224,6 +224,15 @@ function modifyDOM() {
             document.getElementsByName("data[prenom_hebergeur]")[0].value = getText.firstname;
             document.getElementsByName("data[adresse_hebergeur]")[0].value = getText.adress;
             document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+        } else if (typeFileDOM=="JDD"){
+            document.getElementsByName("data[nom]")[0].value = getText.lastname;
+            document.getElementsByName("data[prenom]")[0].value = getText.firstname;
+            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
+            document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+            document.getElementsByName("data[ville]")[0].value = getText.name_city;
+            document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
+            document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
+            document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
         }
         return true;
     }
@@ -273,6 +282,10 @@ document.getElementById("clickBS").addEventListener('click', () => {
 
 document.getElementById("clickATH").addEventListener('click', () => {
     gettingContent("ATH");       
+});
+
+document.getElementById("clickJDD").addEventListener('click', () => {
+    gettingContent("JDD");       
 });
 
 document.getElementById("copy").addEventListener('click', () => {
