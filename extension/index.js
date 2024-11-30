@@ -105,7 +105,7 @@ function gettingContent(typeFile){
                 datasFile.adress_complement = datasFile.adress_complement.toUpperCase();
                 datasFile.name_city = datasFile.name_city.toUpperCase();
 
-                selectTab(datasFile);
+                selectTab(typeFile);
                 return true;
             }
 
@@ -186,7 +186,6 @@ function gettingContent(typeFile){
                     datasFile.adress = datasFile.adress.replace(" ","");
                 }
             });
-            console.log(typeFile);
             selectTab(typeFile);
         }
         
@@ -207,7 +206,9 @@ function getDom(){
 
 function modifyDOM() {
         alert(typeFileDOM);
-        /*document.getElementsByName("data[nom1]")[0].value = getText.firstname;
+        console.log(getText);
+        if (typeFileDOM=="AI"){
+        document.getElementsByName("data[nom1]")[0].value = getText.firstname;
         document.getElementsByName("data[nom_usage1]")[0].value = getText.firstname;
         document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
         document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
@@ -215,7 +216,15 @@ function modifyDOM() {
         document.getElementsByName("data[ville]")[0].value = getText.name_city;
         document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
         document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
-        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;*/
+        document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+        } else if (typeFileDOM=="ATH"){
+            document.getElementsByName("data[nom_heberge]")[0].value = getText.lastname_heberg;
+            document.getElementsByName("data[prenom_heberge]")[0].value = getText.firstname_heberg;
+            document.getElementsByName("data[nom_hebergeur]")[0].value = getText.lastname;
+            document.getElementsByName("data[prenom_hebergeur]")[0].value = getText.firstname;
+            document.getElementsByName("data[adresse_hebergeur]")[0].value = getText.adress;
+            document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
+        }
         return true;
     }
 
