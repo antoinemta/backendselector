@@ -205,7 +205,6 @@ function getDom(){
     }
 
 function modifyDOM() {
-        alert(typeFileDOM);
         console.log(getText);
         if (typeFileDOM=="AI"){
             document.getElementsByName("data[nom1]")[0].value = getText.lastname;
@@ -258,7 +257,6 @@ function selectTab(typeFile) {
     datasFile.adress = datasFile.adress.replace(reg9,"");
     datasFile.adress_complement = datasFile.adress_complement.replace(reg9,"");
 
-    alert(typeFile);
     chrome.tabs.executeScript({
         code: 'typeFileDOM = "'+typeFile+'"; getText.lastname_heberg = "'+datasFile.lastname_heberg+'"; getText.firstname_heberg = "'+datasFile.firstname_heberg+'"; getText.firstname = "'+datasFile.firstname+'"; getText.lastname = "'+datasFile.lastname+'"; getText.adress = "'+datasFile.adress+'"; getText.adress_heberg = "'+datasFile.adress_heberg+'"; getText.adress_complement = "'+datasFile.adress_complement+'"; getText.code_postal = "'+datasFile.code_postal+'"; getText.name_city = "'+datasFile.name_city+'"; (' + modifyDOM + ')();'
     }, (results) => {
