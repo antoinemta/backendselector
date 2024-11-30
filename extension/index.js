@@ -225,12 +225,19 @@ function selectTab(typeFile) {
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg1," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg1," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg1," ");
+    datasFile.firstname_heberg = datasFile.firstname_heberg.replaceAll(reg1," ");
+    datasFile.lastname_heberg = datasFile.lastname_heberg.replaceAll(reg1," ");
     datasFile.firstname = datasFile.firstname.replaceAll(reg8," ");
+    datasFile.firstname_heberg = datasFile.firstname_heberg.replaceAll(reg8," ");
     datasFile.lastname = datasFile.lastname.replaceAll(reg8," ");
+    datasFile.lastname_heberg = datasFile.lastname_heberg.replaceAll(reg8," ");
     datasFile.adress = datasFile.adress.replaceAll(reg8," ");
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
+    datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg9,"");
+    datasFile.adress = datasFile.adress.replaceAll(reg9,"");
+    datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg9,"");
 
     alert(typeFile);
     console.log(datasFile);
