@@ -271,8 +271,8 @@ function selectTab(typeFile) {
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
     datasFile.firstname = datasFile.firstname.replace(reg9,"");
     datasFile.lastname = datasFile.lastname.replace(reg9,"");
-    datasFile.firstname = datasFile.firstname_heberg.replace(reg9,"");
-    datasFile.lastname = datasFile.lastname_heberg.replace(reg9,"");
+    datasFile.firstname_heberg = datasFile.firstname_heberg.replace(reg9,"");
+    datasFile.lastname_heberg = datasFile.lastname_heberg.replace(reg9,"");
     datasFile.name_city = datasFile.name_city.replace(reg9,"");
     datasFile.adress_heberg = datasFile.adress_heberg.replace(reg9,"");
     datasFile.adress = datasFile.adress.replace(reg9,"");
