@@ -163,6 +163,7 @@ function gettingContent(typeFile){
                     }
                     if (data.includes("APPART") || 
                         data.includes("APPT") ||
+                        data.includes("APPRT") ||
                         data.includes("BATIMENT") ||
                         data.includes("RESIDENCE") ||
                         data.includes("PORTE") ||
@@ -213,13 +214,18 @@ function modifyDOM() {
             document.getElementsByName("data[nom1]")[0].value = getText.lastname;
             document.getElementsByName("data[nom_usage1]")[0].value = getText.lastname;
             document.getElementsByName("data[prenom1]")[0].value = getText.firstname;
-            //espaceeeeeeee
-            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
             document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
             document.getElementsByName("data[ville]")[0].value = getText.name_city;
             document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
             document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
             document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+            if (getText.adress_heberg!=""){
+                getText.adress_heberg = getText.adress_heberg + " ";
+            }
+            if (getText.adress_complement!=""){
+                getText.adress_complement = getText.adress_complement + " ";
+            }
+            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
         } else if (typeFileDOM=="ATH"){
             document.getElementsByName("data[nom_heberge]")[0].value = getText.lastname_heberg;
             document.getElementsByName("data[prenom_heberge]")[0].value = getText.firstname_heberg;
@@ -230,12 +236,18 @@ function modifyDOM() {
         } else if (typeFileDOM=="JDD"){
             document.getElementsByName("data[nom]")[0].value = getText.lastname;
             document.getElementsByName("data[prenom]")[0].value = getText.firstname;
-            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
             document.getElementsByName("data[code_postal]")[0].value = getText.code_postal;
             document.getElementsByName("data[ville]")[0].value = getText.name_city;
             document.getElementsByName("data[rnvp_intitule2]")[0].value = getText.adress_heberg;
             document.getElementsByName("data[rnvp_batiment]")[0].value = getText.adress_complement;
             document.getElementsByName("data[rnvp_rue]")[0].value = getText.adress;
+            if (getText.adress_heberg!=""){
+                getText.adress_heberg = getText.adress_heberg + " ";
+            }
+            if (getText.adress_complement!=""){
+                getText.adress_complement = getText.adress_complement + " ";
+            }
+            document.getElementsByName("data[adresse]")[0].value = getText.adress_heberg + getText.adress_complement + getText.adress;
         }
         return true;
     }
@@ -257,6 +269,10 @@ function selectTab(typeFile) {
     datasFile.adress_heberg = datasFile.adress_heberg.replaceAll(reg8," ");
     datasFile.adress_complement = datasFile.adress_complement.replaceAll(reg8," ");
     datasFile.name_city = datasFile.name_city.replaceAll(reg8," ");
+    datasFile.firstname = datasFile.firstname.replace(reg9,"");
+    datasFile.lastname = datasFile.lastname.replace(reg9,"");
+    datasFile.firstname = datasFile.firstname_heberg.replace(reg9,"");
+    datasFile.lastname = datasFile.lastname_heberg.replace(reg9,"");
     datasFile.name_city = datasFile.name_city.replace(reg9,"");
     datasFile.adress_heberg = datasFile.adress_heberg.replace(reg9,"");
     datasFile.adress = datasFile.adress.replace(reg9,"");
@@ -279,20 +295,12 @@ document.getElementById("clickAI").addEventListener('click', () => {
    
 });
 
-document.getElementById("clickBS").addEventListener('click', () => {
-    gettingContent("BS");       
-});
-
 document.getElementById("clickATH").addEventListener('click', () => {
     gettingContent("ATH");       
 });
 
 document.getElementById("clickJDD").addEventListener('click', () => {
     gettingContent("JDD");       
-});
-
-document.getElementById("copy").addEventListener('click', () => {
-    alert('copy');       
 });
 
 chrome.tabs.executeScript({
